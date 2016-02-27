@@ -1,14 +1,7 @@
-{% load staticfiles %}
+{% extends 'layouts/base.html' %}
+{% block title %}Home - {{ block.super }}{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Commont</title>
-    <link rel="stylesheet" href="{% static 'stylesheets/styles.css' %}" />
-</head>
-<body>
+{% block content %}
     <h1 class="title">Welcome to Commont</h1>
     <p class="sub-title">A public forum of self and selfless expression.</p>
-</body>
-</html>
+{% endblock %}
