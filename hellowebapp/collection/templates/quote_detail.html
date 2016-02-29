@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+{% block title %}{{ quote.author }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <h1 class="title">{{ quote.author }}</h1>
+    <p class="sub-title">{{ quote.text }}</p>
+
+    <br />
+    <br />
+
+    <p>{{ quote.description }}</p>
+{% endblock %}
