@@ -1,13 +1,15 @@
 {% extends 'layouts/base.html' %}
-{% load humanize %}
 {% block title %}Home - {{ block.super }}{% endblock %}
 
 {% block content %}
     <h1 class="title">Welcome to Commont</h1>
     <p class="sub-title">A public forum of self and selfless expression.</p>
-    {% if number <= 6 %}
-        <p>{{ number }}</p>
-    {% else %}
-        <p>{{ number|apnumber }}</p>
-    {% endif %}
+
+    <br />
+    <br />
+
+    {% for quote in quotes %}
+        <h5>{{ quote.author }}</h5>
+        <p>{{ quote.text }}</p>
+    {% endfor %}
 {% endblock %}
