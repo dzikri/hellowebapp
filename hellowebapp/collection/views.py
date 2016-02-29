@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+# from collection.forms import QuoteForm
 from collection.models import Quote
 
 # Create your views here.
@@ -15,3 +16,7 @@ def quote_detail(request, slug):
     return render(request, 'quote_detail.html', {
         'quote': quote,
     })
+
+def edit_quote(request, slug):
+    quote = Quote.objects.get(slug=slug)
+    form_class = QuoteForm
