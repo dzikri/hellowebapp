@@ -12,5 +12,6 @@
         <h5>{{ quote.author }}</h5>
         <p>{{ quote.text }}</p>
         <a href="{% url 'quote_detail' slug=quote.slug %}">See Quote</a>
+        <a href="{% url 'edit_quote' slug=quote.slug %}">Edit</a>
     {% endfor %}
 {% endblock %}

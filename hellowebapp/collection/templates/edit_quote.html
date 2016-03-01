@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Edit - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <h1 class="title">Edit Quote</h1>
+    <p class="sub-title"><strong>{{ quote.author }}</strong></p>
+    <p class="sub-title">{{ quote.text }}</p>
+
+    <br />
+    <br />
+
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
