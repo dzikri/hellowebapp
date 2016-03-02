@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^contact/$', TemplateView.as_view(template_name="contact.html"), name='contact'),
     url(r'^quote/(?P<slug>[-\w]+)/$', 'collection.views.quote_detail', name='quote_detail'),
     url(r'^quote/(?P<slug>[-\w]+)/edit/$', 'collection.views.edit_quote', name='edit_quote'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^admin/', admin.site.urls),    
 ]
