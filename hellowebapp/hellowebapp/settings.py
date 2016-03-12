@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'registration',
+    'registration', # This takes care of all the registration forms and what not
 ]
 
 MIDDLEWARE_CLASSES = [
