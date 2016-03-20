@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from collection.forms import QuoteForm
 from collection.models import Quote
+from django.template.defaultfilters import slugify
 
 # Create your views here.
 def index(request):
@@ -10,6 +11,24 @@ def index(request):
     return render(request, 'index.html', {
         'quotes': quotes,
     })
+
+def create_quote(request):
+    form_class = QuoteForm
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            quote = form.save(commit=False)
+            quote.user = request.user
+            quote.slug = slugify(thing.name)
+            quote.save()
+            return redirect('quote_detail', slug=quote.slug)
+        else:
+            form = form_class()
+
+        return render(request, 'quote/create-quote.html', {
+            'form': form,
+        })
+
 
 def quote_detail(request, slug):
     quote = Quote.objects.get(slug=slug)
