@@ -22,12 +22,12 @@ def create_quote(request):
             quote.slug = slugify(thing.name)
             quote.save()
             return redirect('quote_detail', slug=quote.slug)
-        else:
-            form = form_class()
+    else:
+        form = form_class()
 
-        return render(request, 'quote/create-quote.html', {
-            'form': form,
-        })
+    return render(request, 'quote/create-quote.html', {
+        'form': form,
+    })
 
 
 def quote_detail(request, slug):

@@ -24,16 +24,14 @@ from django.contrib.auth.views import (
 )
 from collection.backends import MyRegistrationView
 
-admin.autodiscover()
-
 urlpatterns = [
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    url(r'^accounts/create-quote/$', 'collection.views.create_quote', name='registration_create_quote'),
     url(r'^$', 'collection.views.index', name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^contact/$', TemplateView.as_view(template_name="contact.html"), name='contact'),
     url(r'^quote/(?P<slug>[-\w]+)/$', 'collection.views.quote_detail', name='quote_detail'),
     url(r'^quote/(?P<slug>[-\w]+)/edit/$', 'collection.views.edit_quote', name='edit_quote'),
-    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-    url(r'^accounts/create-quote/$', 'collection.views.create_quote', name='registration_create_quote'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^accounts/password/reset/$', password_reset, {'template_name': 'registration/password_reset_form.html'}, name='password_reset'),
     url(r'^accounts/password/reset/done/$', password_reset_done, {'template_name': 'registration/password_reset_done.html'}, name='password_reset_done'),
