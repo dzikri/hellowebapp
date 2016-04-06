@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from collection.forms import QuoteForm
+
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+
 from collection.models import Quote
 from django.template.defaultfilters import slugify
 
@@ -34,10 +38,14 @@ def quote_detail(request, slug):
         'quote': quote,
     })
 
+@login_required
 def edit_quote(request, slug):
     quote = Quote.objects.get(slug=slug)
     form_class = QuoteForm
 
+    if quote.user != request.user:
+        raise Http404
+        
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=quote)
         if form.is_valid():
