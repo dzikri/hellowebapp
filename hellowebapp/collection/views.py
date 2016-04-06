@@ -19,15 +19,13 @@ def create_quote(request):
         if form.is_valid():
             quote = form.save(commit=False)
             quote.user = request.user
-            quote.slug = slugify(thing.name)
+            quote.slug = slugify(quote.author)
             quote.save()
             return redirect('quote_detail', slug=quote.slug)
     else:
         form = form_class()
 
-    return render(request, 'quote/create-quote.html', {
-        'form': form,
-    })
+    return render(request, 'create_quote.html', { 'form': form })
 
 
 def quote_detail(request, slug):
