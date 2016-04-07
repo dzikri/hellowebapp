@@ -45,7 +45,7 @@ def edit_quote(request, slug):
 
     if quote.user != request.user:
         raise Http404
-        
+
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=quote)
         if form.is_valid():
@@ -58,3 +58,11 @@ def edit_quote(request, slug):
         'quote': quote,
         'form': form,
     })
+
+def browse_by_name(request, initial = None):
+    if initial:
+        quotes = Quote.objects.filter(name__istartswith = initial).order_by('author')
+    else :
+        quotes = Quote.objects.all().order_by('author')
+
+    return render(request, 'search.html', { 'quotes': quotes, 'initial': initial })
