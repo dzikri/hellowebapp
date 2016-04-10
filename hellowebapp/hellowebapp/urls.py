@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^contact/$', TemplateView.as_view(template_name="contact.html"), name='contact'),
 
     # URLs for individual quotes
-    url(r'^quote/$', RedirectView( pattern_name='browse')),
+    url(r'^quote/$', RedirectView.as_view( pattern_name='browse')),
     url(r'^quote/(?P<slug>[-\w]+)/$', views.quote_detail, name='quote_detail'),
     url(r'^quote/(?P<slug>[-\w]+)/edit/$', views.edit_quote, name='edit_quote'),
 
