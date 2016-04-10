@@ -61,7 +61,7 @@ def edit_quote(request, slug):
 
 def browse_by_name(request, initial = None):
     if initial:
-        quotes = Quote.objects.filter(name__istartswith = initial).order_by('author')
+        quotes = Quote.objects.filter(text = initial).order_by('author')
     else :
         quotes = Quote.objects.all().order_by('author')
 
